@@ -16,9 +16,12 @@ var server = app.listen(5000, function(){
 
 app.use(express.static('static'));
 
-app.post('/', function(req, res){
-  res.writeHead(200,{'content-Type':'text/html'});
-  res.end('OK');
+app.use(bp.urlencoded({extended:true}));
+
+app.post('/orte', function(req, res){
+  /*res.writeHead(200,{'content-Type':'text/html'});
+  res.end('OK');*/
+  req.body()
 });
 
 app.get('/', function(req,res){

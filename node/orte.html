@@ -10,12 +10,12 @@
 
 
     $.ajax({
-      url:'http://localhost:5000',
+      url:'http://localhost:5000/orte',
       method:'POST',
       data:{},
-      //dataType:'text',
+      dataType:'text',
       success:function(antwort){
-        $('<div>').html(antwort).appendTo('body');
+        var response = JSON.parse(responseDaten);
       }
     })
 
@@ -25,7 +25,13 @@
 	</style>
 </head>
 <body>
-  <button>Klick Mich!</button>
+	<div id="eForm">
+			<input id="ort" placeholder="Ort"></input>
+			<input id="lat" placeholder="Breitengrad"></input>
+			<input id="lan" placeholder="Längengrad"></input>
+	</div>
+	<button>Daten speichern</button>
+
 
 </body>
 </html>
