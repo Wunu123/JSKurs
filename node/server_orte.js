@@ -14,7 +14,7 @@ app.listen(5000, function(){
   res.setHeader('Access-Control-Allow-Methods','GET, POST');
   next();
 }); */
-
+//sieh nach b angefragte Datei im Ordner Static liegt.
 app.use(express.static('static'));
 
 //Wandelt POST-Daten in Javascript-Objekt rewuest.body.um
@@ -29,7 +29,7 @@ fs.readFile('orte.json', function(err, data){
 //Request Daten werden als JSON mitgeschickt
 //app.use(bp.json());
 
-app.post('/orte', function(reqest, response){
+app.post('/orte', function(request, response){
   /*res.writeHead(200,{'content-Type':'text/html'});
   res.end('OK');*/
   var neuerOrt = {
@@ -49,18 +49,19 @@ app.post('/orte', function(reqest, response){
   } else {
     //error
     response.status(500).end();
-    response.end(JSON.stringify(alleOrte));
+    //response.end(JSON.stringify(alleOrte));
   }
 });
 
 app.post('/zeigeorte', function(request, response){
   response.writeHead(200,{'Content-Type':'application/json'});
-
+  response.end(JSON.stringify(alleOrte));
 })
 
 app.get('/', function(req,res){
-  fs.readFile('d13-orte.html', function(err, data){
+  res.sendFile(__dirname+'/d13-orte.html');
+  /*fs.readFile('d13-orte.html', function(err, data){
     res.writeHead(200,{'Content-Type':'text/html'});
     res.end(data);
-  });
+  });*/
 });

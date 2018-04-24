@@ -11,18 +11,38 @@
 		var _lat = $('#lat').val()*1;
 		var _lan = $('#lan').val()*1;
 
+		var neuerOrt = {
+			name:_ort,
+			lat:_lat*1,
+			lan:_lan*1
+		}
 
     $.ajax({
       url:'http://localhost:5000/orte',
       method:'POST',
-      data:{ort:_ort,lat:_lat,lan:_lan},
-      dataType:'text',
-			//console.log('ort: ',response.ort);
+			data:neuerOrt,
       success:function(antwort){
-        var response = JSON.parse(antwort);
-				console.log('ort: ',response.ort, ' lat: ',response.lat, ' lan ', response.lan,'POST>HTML');
+        var response = antwort;
+
       }
     })
+		$.ajax({
+			url:'http://localhost:5000/zeigeorte',
+			method:'POST',
+ 			success:function(antwort){
+				var response = antwort;
+				console.log(response.orte.length);
+				for (i=0; i>response.length;i++){
+				console.log(response+i);
+					var abs = $('<p>')
+						.html(response.orte)
+						.appendTo( 'body')
+				}
+			}
+		})
+
+
+
 
   });
 	</script>
