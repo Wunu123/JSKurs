@@ -15,11 +15,12 @@
     $.ajax({
       url:'http://localhost:5000/orte',
       method:'POST',
-      data:{},
+      data:{ort:_ort,lat:_lat,lan:_lan},
       dataType:'text',
 			//console.log('ort: ',response.ort);
       success:function(antwort){
-        var response = JSON.parse(antwort);				
+        var response = JSON.parse(antwort);
+				console.log('ort: ',response.ort, ' lat: ',response.lat, ' lan ', response.lan,'POST>HTML');
       }
     })
 
