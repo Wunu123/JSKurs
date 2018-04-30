@@ -13,6 +13,22 @@
           console.log(response);
         }
       });
+
+      $.ajax({
+        url:'http://localhost:5001/getLineData',
+        method:'POST',
+        success:function(response){
+          console.log(response);
+        }
+      });
+
+      $.ajax({
+        url:'http://localhost:5001/getWLData',
+        method:'POST',
+        success:function(response){
+          console.log(response);
+        }
+      });
     });
 	</script>
 	<style>
