@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="jquery-3.3.1.min.js"></script>
+	<script>
+    $(document).on('click','button', function(){
+      $.ajax({
+        url:'http://localhost:5001/getWLData',
+        method:'POST',
+        success:function(response){
+          console.log(response);
+        }
+      });
+    });
+	</script>
+	<style>
+  body {font-family: Arial;font-size: 0.8em;}
+	</style>
+</head>
+<body>
+  <button>Lade Liniendaten von WienerLinien</button>
+</body>
+</html>

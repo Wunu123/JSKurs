@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+	<title>ES6</title>
+	<meta charset="utf-8">
+	<script src="static/jquery-3.3.1.min.js"></script>
+	<script>
+  //var vs. let
+  var x=1;
+  let y=2;
+  for(let i=0;i<5;i++){
+    console.log(i);
+  }
+//  console.log(i);
+// const für Kosntante
+  const pi=3.14;
+  //pi++;
+  console.log(pi);
+
+  //arrow Methode
+  var quadrat = function(a){
+    return a*a;
+  }
+  //ES6
+  var q = a=> a*a;
+  console.log(quadrat(5), q(5));
+
+var mitCB =function(x,callback){
+  return callback(x);
+}
+
+var z = mitCB(5,function(j){ return j*j;});
+var h = mitCB(5, j => j+5);
+
+//  ----    OOP mit ES6    ----
+var o1 = {}; //Objektliteral
+var o2 = new Object(); //ES5
+var o3 = Object.create(Object.prototype); //ES6
+var o4 = Object.create({});
+var o5 = Object.create(null);
+
+console.log(o1, o2, o3);
+
+var tier = {
+  beine:4,
+  removeBein:function(){
+    this.beine--;
+  }
+}
+console.log(tier);
+
+var elefant = Object.create(tier);
+
+
+// Eigenschaften vo Objekten
+var Kreis=function(r){
+  this.radius=r;
+}
+Object.defineProperty (Kreis.prototype, 'umfang', {
+  enumerable:true,
+  writable:true,
+  value:0
+});
+
+var k= new Kreis(3);
+console.log(k.umfang);
+
+for(var i in k){
+  console.log(i+': '+k[i]);
+}
+
+
+class Tier{
+  constructor (beine){
+    this.beine=beine;
+    this.toString = function () {return 'Tier hat '+this.beine+' Beine'; }
+  }
+}
+
+
+
+//Subklassen
+class TierMitNamen extends Tier{
+  constructor (beine, name){
+    super(beine); //ruft Konstruktor von Tier auf
+    this.toString = function () {return name+ ' hat '+this.beine+' Beine'; }
+  }
+}
+
+class SpinneMitNamen extends TierMitNamen{
+  constructor(name){
+    super(8,name);
+  }
+}
+
+var Fritzzi = new Tier(4);
+alert (Fritzzi);
+var Fritzzi = new TierMitNamen(4, 'Fritzzi');
+alert (Fritzzi);
+var Fritzzi = new SpinneMitNamen( 'Fritzzi');
+alert (Fritzzi);
+	</script>
+	<style>
+	</style>
+</head>
+<body>
+
+</body>
+</html>
