@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="static/jquery-3.3.1.min.js"></script>
+	<script>
+	var i=0;
+  var bilder=[
+    'endlos-weite-schwuenge-ueber-perfekt-praeparierte-pisten-ziehen.jpg',
+    'langlaufen-osttirol.jpeg',
+    'schneebericht-wilder-kaiser-brixtental.jpeg'
+  ];
+
+	$(document).ready(function(){
+		$('#bilder').append(
+			$('<img>').attr('src', 'tirolbilder/'+bilder[i])
+		);
+
+		var startX;
+		$('#bilder').on( 'touchstart', function(event){
+			//Ermittle pos vom finger
+			startX = event.originalEvent.touches[0].clientX;
+		});
+		$('#bilder').on('touchend', function(event){
+			// berechne ob Funger nach links oder rechts bewegt wurde
+			var endX = event.originalEvent.changedTouches[0].clientX;
+			if (endX- startX < 0) $(this).trigger('wischlinks');
+			else if (endX-startX > 0) $(this).trigger('wischrechts');
+		});
+
+		$('#bilder').on('wischlinks', function(){
+			i++;
+			if(i<=bilder.length){	$('img', this).attr('src', 'tirolbilder/'+bilder[i]);}			
+			});
+			$('#bilder').on('wischrechts', function(){
+				if(i>bilder.length){
+					$('img', this).attr('src', 'tirolbilder/'+bilder[i]);
+					i=0;
+				} else{
+					i--;
+					$('img', this).attr('src', 'tirolbilder/'+bilder[i]);
+				}
+		});
+
+	});
+	</script>
+	<style>
+	img {vertical-align: bottom;}
+    #bilder{border:1px solid #000; display:inline-block;}
+    #bilder img {width:400px;height:300px}
+	</style>
+</head>
+<body>
+
+  <div id="bilder"></div>
+
+</body>
+</html>
